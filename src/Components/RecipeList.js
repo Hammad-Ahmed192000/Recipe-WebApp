@@ -1,8 +1,13 @@
 import React from 'react'
 import Recipe from './Recipe'
+import { useContext } from 'react'
+import { RecipeContext } from '../App'
 
 
-function RecipeList({recipes, handleRecipeAdd, handleRecipeDelete}) {
+function RecipeList({recipes}) {
+    // const value = useContext(RecipeContext); // new in this code for useContext
+    const {handleRecipeAdd} = useContext(RecipeContext);
+
   return (
     <div>
         <div className='recipe-list'>
@@ -11,15 +16,13 @@ function RecipeList({recipes, handleRecipeAdd, handleRecipeDelete}) {
                         <Recipe 
                             key={recipe.id}
                             {...recipe}
-                            handleRecipeDelete={handleRecipeDelete}
+                            // handleRecipeDelete={handleRecipeDelete}
                         /> 
                     )
                 })}
 
     <div className='add-recipe-btn'>
-                <button className='add-btn' 
-                    onClick={handleRecipeAdd}
-                >
+            <button className='add-btn' onClick={handleRecipeAdd}>
                     Add Recipe
                 </button>
             </div>
