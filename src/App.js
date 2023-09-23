@@ -76,11 +76,22 @@ function App() {
   }
 
 
+  // handling Changes in Edit Recipe section
+
+function handleRecipeChange(id, recipe){
+  const newRecipes = [...recipes];
+  const index = newRecipes.findIndex(r => r.id === recipe.id)
+  newRecipes[index] = recipe;
+  setRecipes(newRecipes);
+}
+
   const recipeContextValue = {
     handleRecipeAdd,
     handleRecipeDelete,
     handleRecipeEdit,
+    handleRecipeChange
   }
+
 
   return (
 
