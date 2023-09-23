@@ -12,10 +12,16 @@ export const RecipeContext = React.createContext();
 const LOCAL_STORAGE_KEY = 'cookingWithReact.react';
 function App() {
   
-  const [recipes, setRecipes] = useState(sampleRecipes)
-  
+  const [recipes, setRecipes] = useState(sampleRecipes)  
 
+
+
+  // this state is for Edit button, to populate RecipeEdit.js component
+  const [selectedRecipeId, setSelectedRecipeId] = useState(); 
   
+  const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
+  // console the selected recipe with all the ingredients
+  console.log(selectedRecipe)
   
   // local storage Functionality code...
 
@@ -34,6 +40,9 @@ function App() {
   //   handleRecipeAdd,
   //   handleRecipeDelete
   // }
+
+
+  // all the handling functions are follows...
 
   function handleRecipeAdd() {
     const newRecipe = {
@@ -62,9 +71,15 @@ function App() {
     setRecipes(recipes.filter(recipe => recipe.id !== id));
   }
 
+  function handleRecipeEdit(id){
+    setSelectedRecipeId(id);
+  }
+
+
   const recipeContextValue = {
     handleRecipeAdd,
-    handleRecipeDelete
+    handleRecipeDelete,
+    handleRecipeEdit,
   }
 
   return (
@@ -88,7 +103,10 @@ function App() {
 
       {/* <div className='vertical-line'></div> */}
 
-        <RecipeEdit />
+        
+        {/* Changes are also made it here  */}
+
+      { selectedRecipe && <RecipeEdit recipe={selectedRecipe}/>}
 
     </div>
 
@@ -97,7 +115,7 @@ function App() {
 
 
 
-
+// Sample Recipes are here
 const sampleRecipes = [
   {
     id: 1,

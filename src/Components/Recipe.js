@@ -10,10 +10,10 @@ function Recipe(props) {
         cookTime,
         servings,
         instructions,
-        ingredients 
+        ingredients,
     } = props
 
-    const { handleRecipeDelete} = useContext(RecipeContext);
+    const { handleRecipeDelete, handleRecipeEdit} = useContext(RecipeContext);
     
   return (
     <div>
@@ -21,7 +21,12 @@ function Recipe(props) {
         <div className='recipe-list-row1'>
             <h3>{name}</h3>
             <div>
-                <button className='edit-btn'>Edit</button>
+                <button 
+                    className='edit-btn'
+                    onClick={() => handleRecipeEdit(id)}
+                >
+                    Edit
+                </button>
                 <button 
                     className='delete-btn'
                     onClick={() => handleRecipeDelete(id)}

@@ -1,7 +1,7 @@
 import React from 'react'
 import RecipeEditIngredients from './RecipeEditIngredients'
 
-function RecipeEdit() {
+function RecipeEdit({recipe}) {
   return (
     <div className="recipe-edit">
         <div className='recipe-edit-remove-btn-div'>
@@ -10,16 +10,39 @@ function RecipeEdit() {
 
         <div className='recipe-edit-details-grid'>
             <label htmlFor='name' className='recipe-edit-label'> Name </label>
-            <input type='text' name='name' id='name' className='recipe-edit-input' />
+            <input 
+                type='text' 
+                name='name' 
+                id='name' 
+                className='recipe-edit-input'
+                value={recipe.name}  
+            />
 
             <label htmlFor='cookTime' className='recipe-edit-label'> Cook Time </label>
-            <input type='text' name='cookTime' id='cookTime' className='recipe-edit-input' />
+            <input 
+                type='text' 
+                name='cookTime' 
+                id='cookTime' 
+                className='recipe-edit-input' 
+                value={recipe.cookTime}
+            />
 
             <label htmlFor='servings' min= '1' className='recipe-edit-label'> Servings </label>
-            <input type='number' name='servings' id='servings' className='recipe-edit-input' />
+            <input 
+                type='number' 
+                name='servings' 
+                id='servings' 
+                className='recipe-edit-input' 
+                value={recipe.servings}
+            />
 
             <label htmlFor='instructions' className='recipe-edit-label'> Instructions </label>
-            <textarea name="instructions" id="instructions" cols="30" rows="10"></textarea>
+            <textarea 
+                name="instructions" 
+                id="instructions" 
+                cols="30" rows="10"
+                value={recipe.instructions}
+            ></textarea>
 
             
         </div>
@@ -37,9 +60,21 @@ function RecipeEdit() {
             <div> Name </div>
             <div> Amount </div>                    
         </div>
-                    
 
-            <RecipeEditIngredients />
+        {recipe.ingredients.map(ingredient => {
+            return (
+                <RecipeEditIngredients 
+                    key={ingredient.id}
+                    ingredient={ingredient}
+                />
+            )
+        })}
+
+        {/* These components are now dynamically populated  */}
+            {/* <RecipeEditIngredients />
+            <RecipeEditIngredients /> */}
+
+
         <div style={{
             display: 'flex',
             margin: '10px 20px 20px 130px',            

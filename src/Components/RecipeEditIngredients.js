@@ -1,10 +1,8 @@
 import React from 'react'
 
-function RecipeEditIngredients() {
+function RecipeEditIngredients({ingredient}) {
   return (
     <div className='recipe-edit-ingredients'>
-
-   
 
     <div style={{
         display:'flex',
@@ -12,8 +10,16 @@ function RecipeEditIngredients() {
         margin:'20px',
         
     }}>
-        <input type="text" id='name' />
-        <input type="text" id='amount'/>
+        <input 
+            type="text" 
+            id='name' 
+            value={ingredient.name}
+        />
+        <input 
+            type="text" 
+            id='amount'
+            value={ingredient.amount}
+        />
         <button className='delete-btn '>x</button>
     </div>
         
