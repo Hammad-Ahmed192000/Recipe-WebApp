@@ -3,6 +3,7 @@ import './App.css';
 import RecipeList from './Components/RecipeList';
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import RecipeEdit from './Components/RecipeEdit';
 
 
 export const RecipeContext = React.createContext();
@@ -12,6 +13,8 @@ const LOCAL_STORAGE_KEY = 'cookingWithReact.react';
 function App() {
   
   const [recipes, setRecipes] = useState(sampleRecipes)
+  
+
   
   
   // local storage Functionality code...
@@ -27,10 +30,10 @@ function App() {
   },[recipes]);
 
 
-  const recipeContextValue = {
-    handleRecipeAdd,
-    handleRecipeDelete
-  }
+  // const recipeContextValue = {
+  //   handleRecipeAdd,
+  //   handleRecipeDelete
+  // }
 
   function handleRecipeAdd() {
     const newRecipe = {
@@ -59,19 +62,23 @@ function App() {
     setRecipes(recipes.filter(recipe => recipe.id !== id));
   }
 
+  const recipeContextValue = {
+    handleRecipeAdd,
+    handleRecipeDelete
+  }
 
   return (
 
     <div className="App">
-      <h1 style={{
+      {/* <h1 style={{
         textAlign:'center',        
       }}> Recipe App </h1>
-      
-      <div className='horizontal-line'></div>
+       */}
+      {/* <div className='horizontal-line'></div> */}
 
       <RecipeContext.Provider value={recipeContextValue}>
         
-      <RecipeList recipes={recipes} />  
+        <RecipeList recipes={recipes} />  
 
          {/* handleRecipeAdd={handleRecipeAdd}
          handleRecipeDelete={handleRecipeDelete} */}
@@ -79,13 +86,17 @@ function App() {
       </RecipeContext.Provider>
       
 
-      <div className='vertical-line'></div>
+      {/* <div className='vertical-line'></div> */}
 
+        <RecipeEdit />
 
     </div>
 
   );
 }
+
+
+
 
 const sampleRecipes = [
   {

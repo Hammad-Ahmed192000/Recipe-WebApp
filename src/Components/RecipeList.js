@@ -6,7 +6,7 @@ import { RecipeContext } from '../App'
 
 function RecipeList({recipes}) {
     // const value = useContext(RecipeContext); // new in this code for useContext
-    const {handleRecipeAdd} = useContext(RecipeContext);
+    const {handleRecipeAdd} = useContext(RecipeContext);    
 
   return (
     <div>
